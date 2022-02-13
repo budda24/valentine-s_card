@@ -44,8 +44,6 @@ class NameScrean extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.width);
-    print(MediaQuery.of(context).size.height);
     nextScrean();
     ScreenUtil.init(
         BoxConstraints(
