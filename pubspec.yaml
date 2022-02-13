@@ -35,6 +35,13 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_lints: ^1.0.0
+  flutter_launcher_icons: "^0.9.2"
+  cached_network_image: ^3.2.0
+  google_fonts: ^2.2.0
+  get:
+  flutter_screenutil:
+  auto_size_text:
 
 
 dev_dependencies:
@@ -46,19 +53,14 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^1.0.0
-  flutter_launcher_icons: "^0.9.2"
-  cached_network_image: ^3.2.0
-  google_fonts: ^2.2.0
-  get:
-  flutter_screenutil:
 
+  flutter_launcher_icons: "^0.9.2"
 
 
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/making-love.png"
+  image_path: "assets/heart.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

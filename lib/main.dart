@@ -110,23 +110,6 @@ class MyHomePage extends StatelessWidget {
             top: false,
             child: Stack(
               children: [
-                /* Positioned.fill(
-                  top: 25,
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                        text: 'Let the fun \n',
-                        style: kTextStyleWhite.copyWith(
-                          color: Colors.white.withOpacity(0.61),
-                        ),
-                        children: [
-                          TextSpan(
-                              text: 'continue',
-                              style: kTextStyleWhiteShadow.copyWith(
-                                  fontSize: width * 0.22))
-                        ]),
-                  ),
-                ), */
                 BluredBox(height: 781.h * 1.04, width: 392.w)
               ],
             ),

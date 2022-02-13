@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 import '../const/const.dart';
 import '../models/graphics.dart';
@@ -100,16 +101,18 @@ class _BluredBoxState extends State<BluredBox> {
                         ),
                       ),
                     ),
-
                     Positioned(
                       top: 250.h,
                       left: 45.w,
                       child: Container(
                         width: 300.w,
                         height: 300.h,
-                        child: Text(title,
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.pacifico(fontSize: 30.sp)),
+                        child: AutoSizeText(
+                          title,
+                          maxLines: 4,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.pacifico(fontSize: 30.sp),
+                        ),
                       ),
                     ),
                     Container(
@@ -147,7 +150,6 @@ class _BluredBoxState extends State<BluredBox> {
                                 fontSize: 30, color: Colors.black)),
                       ),
                     ),
-                    /* ), */
                   ],
                 ),
               ),
