@@ -89,7 +89,7 @@ class _BluredBoxState extends State<BluredBox> {
                     ),
                     Positioned(
                       left: 95.w,
-                      top: 50,
+                      top: 50.w,
                       child: Container(
                         height: 200.h,
                         width: 200.w,
@@ -117,7 +117,7 @@ class _BluredBoxState extends State<BluredBox> {
                     ),
                     Container(
                       margin: EdgeInsets.only(
-                          top: widget.height * 0.62, left: widget.width * 0.28),
+                          top: 480.h, left: 110.w),
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
                           stops: [
