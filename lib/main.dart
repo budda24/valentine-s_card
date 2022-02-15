@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sex_position_generator/const/const.dart';
@@ -8,16 +9,27 @@ import 'package:sex_position_generator/widget/display_box.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_storage/get_storage.dart';
+import 'controller/controller.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  /* final MainController controller = Get.put(MainController());
+  dynamic get startscreen {
+    if (controller.box.read('visited') == false) {
+      return ChoseNameScreen();
+    } else {
+      return NameScrean();
+    }
+
+  } */
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +39,68 @@ class MyApp extends StatelessWidget {
       home: AnimatedSplashScreen(
         splashIconSize: 300,
         splash: 'assets/hearts_white.gif',
-        nextScreen: NameScrean(),
+        nextScreen: ChoseNameScreen(),
         splashTransition: SplashTransition.fadeTransition,
         backgroundColor: const Color(0xff000000),
+      ),
+    );
+  }
+}
+
+class ChoseNameScreen extends StatelessWidget {
+  const ChoseNameScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    ScreenUtil.init(
+        BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width,
+            maxHeight: MediaQuery.of(context).size.height),
+        designSize: Size(392, 781),
+        context: context,
+        minTextAdapt: true,
+        orientation: Orientation.portrait);
+    final mainControler = Get.put(MainController());
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          height: double.infinity,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                'assets/Black-Couple.png',
+              ),
+              fit: BoxFit.fill,
+            ),
+          ),
+          child: Column(children: [
+            Container(
+              padding: EdgeInsets.all(30),
+              margin: EdgeInsets.only(top: 550.h),
+              child: TextField(
+                controller: mainControler.nameControler,
+                decoration: InputDecoration(hintText: 'Your Love Name'),
+              ),
+            ),
+            ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                ),
+                backgroundColor: MaterialStateProperty.all(Colors.transparent),
+              ),
+              onPressed: () {
+                mainControler.box.write('visited', true);
+                Get.to(NameScrean());
+              },
+              child: Text('Start giving love',
+                  style:
+                      GoogleFonts.pacifico(fontSize: 30, color: Colors.black)),
+            ),
+          ]), /* add child content here */
+        ),
       ),
     );
   }
@@ -45,14 +116,8 @@ class NameScrean extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     nextScrean();
-    ScreenUtil.init(
-        BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width,
-            maxHeight: MediaQuery.of(context).size.height),
-        designSize: Size(392, 781),
-        context: context,
-        minTextAdapt: true,
-        orientation: Orientation.portrait);
+    final mainController = Get.find<MainController>();
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -65,11 +130,12 @@ class NameScrean extends StatelessWidget {
             ),
           ),
           child: Container(
-            margin: EdgeInsets.only(top: 180.h),
-            alignment: Alignment.topCenter,
-            child: Text('Nunlaya',
-                style: GoogleFonts.loversQuarrel(fontSize: 100.h)),
-          ), /* add child content here */
+              margin: EdgeInsets.only(top: 150.h),
+              alignment: Alignment.topCenter,
+              child: AutoSizeText(mainController.nameControler.text,
+                  maxLines: 2,
+                  style: GoogleFonts.loversQuarrel(
+                      fontSize: 100.sp))), /* add child content here */
         ),
       ),
     );
@@ -107,9 +173,7 @@ class MyHomePage extends StatelessWidget {
           body: SafeArea(
             top: false,
             child: Stack(
-              children: [
-                BluredBox(height: 781.h * 1.04, width: 392.w)
-              ],
+              children: [BluredBox(height: 781.h * 1.04, width: 392.w)],
             ),
           ),
         ),

@@ -42,6 +42,7 @@ dependencies:
   get:
   flutter_screenutil:
   auto_size_text:
+  get_storage:
 
 
 dev_dependencies:
